@@ -51,3 +51,64 @@ function cargarReservas() {
 }
 
 cargarReservas();
+
+
+
+function editar(id) {
+    fetch(`/api/reservas/${id}`) // Obtener los datos de la reserva
+        .then(response => response.json())
+        .then(reserva => {
+            document.getElementById("idReserva").value = id;
+            document.getElementById("nombre").value = reserva.nombre;
+            document.getElementById("personas").value = reserva.n_personas;
+            document.getElementById("fecha").value = reserva.fecha.split("T")[0];
+            document.getElementById("telefono").value = reserva.telefono;
+            document.getElementById("mesa").value = reserva.n_mesa;
+
+            document.getElementById("enviar").value = "Actualizar";
+        })
+        .catch(error => console.error("Error obteniendo reserva:", error));
+}
+
+function eliminar(id) {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: "¿Estás seguro?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "No, cancelar",
+        
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`/api/reservas/${id}`, { method: "DELETE" })
+            .then(response => response.json())
+            .then(data => {
+              swalWithBootstrapButtons.fire({
+                title: "¡Eliminado!",
+                text: data.message,
+                icon: "success"
+              });
+    
+              if (data.success) cargarReservas();
+            })
+            .catch(error => {
+              console.error("Error al eliminar:", error);
+              Swal.fire("Error", "No se pudo eliminar la reserva", "error");
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelado",
+            text: "Tu reserva está segura",
+            icon: "error"
+          });
+        }
+      });
+    }

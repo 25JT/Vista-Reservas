@@ -1,0 +1,1 @@
+Aplicar actualizcion automatica si la base de datos tiene un nuevo user 
