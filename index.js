@@ -88,11 +88,11 @@ app.post('/validar', function (req, res) {
                 }
     
                 let ultimoId = result[0] ? result[0].Id  : 1; // Incrementar el último ID o iniciar en 1
-                console.log("El último ID es:", ultimoId);
+                
                 valores.push(ultimoId); // Agregar el nuevo ID a los valores
                 const Idilt = ultimoId;
                 
-            console.log("Datos insertados correctamente", IdUlt);
+            
             return res.json({ success: true, message:`Reserva creada con éxito. No pierdas tu  ID de reserva ➡️: ${Idilt}`, id: Idilt });
             })
 
