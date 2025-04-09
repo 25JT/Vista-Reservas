@@ -14,7 +14,7 @@ export default conexion;
 
 conexion.connect(function (error){
 if (error){
-    console.log("fallo en la conexion" + error);
+    console.log("fallo en la conexion " + error);
     
 }else{
     console.log("Conexion Exitosa");

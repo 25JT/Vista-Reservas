@@ -20,6 +20,65 @@
     <div id="listaReservas"></div>
   </section>
 
+  <br>
+
+  <section style="margin: 0px 0px 40px 0px;">
+    <div class="container">
+      <form id="formReserva" class="p-4 shadow rounded contform">
+        <input type="hidden" id="idReserva">
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" required>
+          </div>
+          <div class="col-md-6">
+            <label for="personas" class="form-label">Número de personas:</label>
+            <input type="number" class="form-control" name="personas" id="personas" min="1" placeholder="Ej. 2"
+              required>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+          <div class="col-md-6">
+            <label for="fecha" class="form-label">Fecha:</label>
+            <input type="date" class="form-control" name="fecha" id="fecha" required>
+          </div>
+          <div class="col-md-6">
+            <label for="telefono" class="form-label">Teléfono:</label>
+            <input type="tel" class="form-control" name="telefono" id="telefono" pattern="[0-9]{10}"
+              title="Ingrese un número válido de 10 dígitos" placeholder="Ej. 3001234567" required>
+          </div>
+
+          <div class="col-md-6">
+            <label for="hora" class="form-label">Hora:</label>
+            <select class="form-control" name="hora" id="hora" required>
+              <option value="">Seleccione una hora</option>
+              <option value="17:00">5:00 PM</option>
+              <option value="18:00">6:00 PM</option>
+              <option value="19:00">7:00 PM</option>
+              <option value="20:00">8:00 PM</option>
+              <option value="21:00">9:00 PM</option>
+              <option value="22:00">10:00 PM</option>
+              <option value="23:00">11:00 PM</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="mesa" class="form-label">Número de mesa:</label>
+            <input type="number" class="form-control" name="mesa" id="mesa" min="1" required
+              placeholder="Solo disponemos de 8 mesas">
+          </div>
+        </div>
+        <br>
+        <div class=" d-flex align-items-end">
+          <button type="submit" id="enviar" class="btn btn-success w-100">Enviar</button>
+          <button type="button" id="actualizar" class="btn btn-warning w-100 ms-2"
+            style="display:none;">Actualizar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
 
   <script src="/main.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
