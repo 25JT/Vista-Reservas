@@ -218,3 +218,23 @@ function limpiarFormularioConsulta() {
   if (input) input.value = "";
   if (resultado) resultado.innerText = "";
 }
+
+
+async function obtenerReservas() {
+  const response = await fetch('/api/reservas'); // Endpoint que devuelve las reservas
+  const reservas = await response.json();
+  cargarReservas(reservas);
+  // Aquí haces lo que quieras con las reservas
+  
+  actualizarVista(reservas);
+}
+
+function actualizarVista() {
+  const contenedor = document.getElementById("listaReservas");
+  contenedor.innerHTML = ""; // Limpia
+
+}
+
+// Llama cada 5 segundos
+setInterval(obtenerReservas, 1800000);
+obtenerReservas(); // también al cargar

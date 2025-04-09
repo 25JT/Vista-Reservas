@@ -1,5 +1,5 @@
 import conexion from './public/Conexion.js';
-import express from "express";
+import express from "express";  
 
 const mesasD = 8;
 
@@ -282,7 +282,11 @@ app.post('/consulta', function (req, res) {
 })
 
 
-
+app.get('/api/reservas', async (req, res) => {
+    const [rows] = await db.query('SELECT * FROM reservas ORDER BY fecha DESC');
+    res.json(rows);
+  });
+  
 
 
 
